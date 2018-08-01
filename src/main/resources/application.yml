@@ -1,0 +1,17 @@
+server:
+    port: 80
+spring:
+  application:
+    name: userManger
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/course
+    username: root
+    password: 221429
+mybatis:
+  type-aliases-package: com.example.demo11.model
+  mapper-locations:
+        - mapper/*
+
+
+
