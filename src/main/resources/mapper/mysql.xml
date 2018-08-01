@@ -9,4 +9,59 @@
         where userName=#{userName}
         and password=#{password}
     </select>
+    <!--添加用户接口-->
+    <insert id="addUser" parameterType="com.example.demo11.model.User">
+        insert into user (id,userName,password,age,sex,permission,isDelete)
+        values (#{id},#{userName},#{password},#{age},#{sex},#{permission},#{isDelete})
+
+    </insert>
+    <!--获取用户（列表）信息接口-->
+    <select id="getUserInfo" parameterType="com.example.demo11.model.User" resultType="com.example.demo11.model.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="null != id and ' ' != id">
+                AND  id=#{id}
+            </if>
+            <if test="null != userName and ' ' != userName">
+                AND  id=#{userName}
+            </if>
+            <if test="null != password and ' ' != password">
+                AND  id=#{password}
+            </if>
+            <if test="null != sex and ' ' != sex">
+                AND  id=#{sex}
+            </if>
+            <if test="null != age and ' ' != age">
+                AND  id=#{age}
+            </if>
+            <if test="null != permission and ' ' != permission">
+                AND  id=#{permission}
+            </if>
+            <if test="null != isDelete and ' ' != isDelete">
+                AND  id=#{isDelete}
+            </if>
+        </trim>
+    </select>
+    <!--更新/删除用户信息-->
+    <update id="updateUserInfo" parameterType="com.example.demo11.model.User">
+        update user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="null != userName and '' !=userName">
+                userName=#{userName},
+            </if>
+            <if test="null != sex and '' !=sex">
+                sex=#{sex},
+            </if>
+            <if test="null != age and '' !=age">
+                age=#{age},
+            </if>
+            <if test="null != permission and '' !=permission">
+                permission=#{permission},
+            </if>
+            <if test="null != isDelete and '' !=isDelete">
+                isDelete=#{isDelete},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
 </mapper>
